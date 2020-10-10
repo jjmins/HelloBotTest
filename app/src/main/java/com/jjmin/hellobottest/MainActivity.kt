@@ -44,7 +44,7 @@ class MainActivity() : AppCompatActivity() {
             .subscribe({
 
                 it.forEach {
-                    issueList.value!!.add(IssueListTextModel(it.number,it.title))
+                    issueList.value!!.add(IssueListTextModel(it.number,it.title,it.body))
                 }
                 issueList.value!!.add(4,IssueImgListModel("https://s3.ap-northeast-2.amazonaws.com/hellobot-kr-test/image/main_logo.png"))
                 adapter.submitList(issueList.value)

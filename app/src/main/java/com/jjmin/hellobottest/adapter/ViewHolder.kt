@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.core.content.ContextCompat.startActivity
 import com.bumptech.glide.Glide
+import com.jjmin.hellobottest.DetailActivity
 import com.jjmin.hellobottest.R
 import com.jjmin.hellobottest.model.IssueImgListModel
 import com.jjmin.hellobottest.model.IssueListTextModel
@@ -31,12 +31,13 @@ class IssueTextViewHolder(
         issueText.text = "${item.number} : ${item.title}"
 
         itemView.setOnClickListener {
-            val intent = Intent(itemView.context,DetailActivity::class.java)
+            val intent = Intent(itemView.context, DetailActivity::class.java)
             intent.putExtra("issueNumber",item.number)
+            intent.putExtra("body",item.body)
+            itemView.context.startActivity(intent)
+
         }
-
     }
-
 }
 
 class IssueImageViewHolder(

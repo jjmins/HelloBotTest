@@ -7,4 +7,6 @@ open class IssueModel(){
     lateinit var title : String
     @SerializedName("number")
     lateinit var number : String
+    @SerializedName("body")
+    lateinit var body : String
 }

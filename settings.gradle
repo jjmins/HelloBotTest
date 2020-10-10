@@ -1,0 +1,2 @@
+rootProject.name='HelloBotTest'
+include ':app'

@@ -1,6 +1,10 @@
 package com.jjmin.hellobottest.model
 
-data class IssueListTextModel(val number : String,val title : String,val body : String) : ListModel {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class IssueTextListModel(val number : String, val title : String, val body : String,val user : String,val profile : String) : ListModel,Parcelable {
     override fun getType(): Int {
         return ItemType.TEXT.ordinal
     }

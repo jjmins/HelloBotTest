@@ -2,14 +2,14 @@ package com.jjmin.hellobottest
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.jjmin.hellobottest.adapter.ListAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jjmin.hellobottest.adapter.ListAdapter
 import com.jjmin.hellobottest.model.IssueImgListModel
-import com.jjmin.hellobottest.model.IssueListTextModel
+import com.jjmin.hellobottest.model.IssueTextListModel
 import com.jjmin.hellobottest.model.ListModel
 import com.jjmin.hellobottest.model.remote.IssueRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -33,10 +33,9 @@ class MainActivity : AppCompatActivity() {
 
         adapter = ListAdapter { it ->
             when (it) {
-                is IssueListTextModel -> {
+                is IssueTextListModel -> {
                     val intent = Intent(this, DetailActivity::class.java)
-                    intent.putExtra("issueNumber", it.number)
-                    intent.putExtra("body", it.body)
+                    intent.putExtra("issueInfo", it)
                     startActivity(intent)
                 }
 
@@ -60,9 +59,20 @@ class MainActivity : AppCompatActivity() {
             .subscribe({
 
                 it.forEach { it ->
-                    issueList.value!!.add(IssueListTextModel("#${it.number}",it.title,it.body))
+                    issueList.value!!.add(
+                        IssueTextListModel(
+                            "#${it.number}",
+                            it.title,
+                            it.body,
+                            it.user.login,
+                            it.user.profile
+                        )
+                    )
                 }
-                issueList.value!!.add(4,IssueImgListModel("https://s3.ap-northeast-2.amazonaws.com/hellobot-kr-test/image/main_logo.png"))
+                issueList.value!!.add(
+                    4,
+                    IssueImgListModel("https://s3.ap-northeast-2.amazonaws.com/hellobot-kr-test/image/main_logo.png")
+                )
                 adapter.submitList(issueList.value)
 
             }) { e ->

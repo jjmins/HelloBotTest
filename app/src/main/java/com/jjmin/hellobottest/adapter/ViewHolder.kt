@@ -9,7 +9,7 @@ import androidx.annotation.LayoutRes
 import com.bumptech.glide.Glide
 import com.jjmin.hellobottest.R
 import com.jjmin.hellobottest.model.IssueImgListModel
-import com.jjmin.hellobottest.model.IssueListTextModel
+import com.jjmin.hellobottest.model.IssueTextListModel
 import com.jjmin.hellobottest.model.ListModel
 
 
@@ -22,7 +22,7 @@ class IssueTextViewHolder(
     lateinit var issueText : TextView
 
     override fun View.onBind(item: ListModel) {
-        item as IssueListTextModel
+        item as IssueTextListModel
 
         issueText = itemView.findViewById(R.id.issueTv) as TextView
 

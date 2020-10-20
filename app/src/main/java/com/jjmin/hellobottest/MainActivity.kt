@@ -9,10 +9,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jjmin.hellobottest.adapter.ListAdapter
-import com.jjmin.hellobottest.model.IssueImgListModel
-import com.jjmin.hellobottest.model.IssueTextListModel
-import com.jjmin.hellobottest.model.ListModel
-import com.jjmin.hellobottest.model.remote.IssueRepository
+import com.jjmin.hellobottest.remote.model.IssueImgListModel
+import com.jjmin.hellobottest.remote.model.IssueTextListModel
+import com.jjmin.hellobottest.remote.model.ListModel
+import com.jjmin.hellobottest.remote.IssueRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*

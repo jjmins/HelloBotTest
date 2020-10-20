@@ -1,4 +1,4 @@
-package com.jjmin.hellobottest.model
+package com.jjmin.hellobottest.remote.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

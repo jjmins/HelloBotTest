@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.bumptech.glide.Glide
 import com.jjmin.hellobottest.R
-import com.jjmin.hellobottest.model.IssueImgListModel
-import com.jjmin.hellobottest.model.IssueTextListModel
-import com.jjmin.hellobottest.model.ListModel
+import com.jjmin.hellobottest.remote.model.IssueImgListModel
+import com.jjmin.hellobottest.remote.model.IssueTextListModel
+import com.jjmin.hellobottest.remote.model.ListModel
 
 
 class IssueTextViewHolder(

@@ -3,9 +3,8 @@ package com.jjmin.hellobottest.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.jjmin.hellobottest.R
-import com.jjmin.hellobottest.model.ItemType
-import com.jjmin.hellobottest.model.ListModel
+import com.jjmin.hellobottest.remote.model.ItemType
+import com.jjmin.hellobottest.remote.model.ListModel
 
 class ListAdapter(private val onClick: (ListModel) -> Unit) :
     ListAdapter<ListModel, BaseViewHolder<ListModel>>(itemCallback) {

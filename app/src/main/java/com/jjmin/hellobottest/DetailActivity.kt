@@ -2,10 +2,8 @@ package com.jjmin.hellobottest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toolbar
 import com.bumptech.glide.Glide
-import com.jjmin.hellobottest.R
-import com.jjmin.hellobottest.model.IssueTextListModel
+import com.jjmin.hellobottest.remote.model.IssueTextListModel
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {

@@ -1,9 +1,8 @@
 package com.jjmin.hellobottest
 
-import com.jjmin.hellobottest.model.IssueModel
+import com.jjmin.hellobottest.remote.model.IssueModel
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.POST
 
 interface API{
 

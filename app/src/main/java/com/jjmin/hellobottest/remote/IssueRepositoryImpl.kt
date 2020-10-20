@@ -1,7 +1,7 @@
-package com.jjmin.hellobottest.model.remote
+package com.jjmin.hellobottest.remote
 
 import com.jjmin.hellobottest.API
-import com.jjmin.hellobottest.model.IssueModel
+import com.jjmin.hellobottest.remote.model.IssueModel
 import io.reactivex.Single
 
 class IssueRepositoryImpl(private var api : API) : IssueRepository{

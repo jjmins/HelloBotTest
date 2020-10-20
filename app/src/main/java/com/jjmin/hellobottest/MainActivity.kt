@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jjmin.hellobottest.adapter.ListAdapter
 import com.jjmin.hellobottest.model.IssueImgListModel
@@ -28,8 +29,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         issueList.value = arrayListOf()
         issueRecylcer.layoutManager = LinearLayoutManager(this)
+
 
         adapter = ListAdapter { it ->
             when (it) {
@@ -50,16 +53,24 @@ class MainActivity : AppCompatActivity() {
         issueRecylcer.adapter = adapter
 
         getIssueItem()
+
+        issueList.observe(this, Observer {
+            adapter.submitList(it)
+        })
+
     }
 
     fun getIssueItem(){
+
+        var list : ArrayList<ListModel> = arrayListOf()
+
         repository.getIssue()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
                 it.forEach { it ->
-                    issueList.value!!.add(
+                    list.add(
                         IssueTextListModel(
                             "#${it.number}",
                             it.title,
@@ -69,11 +80,12 @@ class MainActivity : AppCompatActivity() {
                         )
                     )
                 }
-                issueList.value!!.add(
+                list.add(
                     4,
                     IssueImgListModel("https://s3.ap-northeast-2.amazonaws.com/hellobot-kr-test/image/main_logo.png")
                 )
-                adapter.submitList(issueList.value)
+
+                issueList.value = list
 
             }) { e ->
                 Log.e("error", e.message)

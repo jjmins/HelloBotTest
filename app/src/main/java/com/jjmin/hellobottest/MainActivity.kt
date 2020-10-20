@@ -1,5 +1,7 @@
 package com.jjmin.hellobottest
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,19 +10,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jjmin.hellobottest.model.IssueImgListModel
 import com.jjmin.hellobottest.model.IssueListTextModel
-import com.jjmin.hellobottest.model.ModelImpl
+import com.jjmin.hellobottest.model.ListModel
 import com.jjmin.hellobottest.model.remote.IssueRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
-    var issueList = MutableLiveData<ArrayList<ModelImpl>>()
+    var issueList = MutableLiveData<ArrayList<ListModel>>()
 
-    private val repository : IssueRepository by inject{ parametersOf(this) }
+    private val repository : IssueRepository by inject()
 
     lateinit var adapter : ListAdapter
 
@@ -30,7 +31,22 @@ class MainActivity() : AppCompatActivity() {
         issueList.value = arrayListOf()
         issueRecylcer.layoutManager = LinearLayoutManager(this)
 
-        adapter = ListAdapter()
+        adapter = ListAdapter { it ->
+            when (it) {
+                is IssueListTextModel -> {
+                    val intent = Intent(this, DetailActivity::class.java)
+                    intent.putExtra("issueNumber", it.number)
+                    intent.putExtra("body", it.body)
+                    startActivity(intent)
+                }
+
+                is IssueImgListModel -> {
+                    val browserIntent =
+                        Intent(Intent.ACTION_VIEW, Uri.parse("https://thingsflow.com/ko/home/"))
+                    startActivity(browserIntent)
+                }
+            }
+        }
 
         issueRecylcer.adapter = adapter
 
@@ -43,8 +59,8 @@ class MainActivity() : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
 
-                it.forEach {
-                    issueList.value!!.add(IssueListTextModel(it.number,it.title,it.body))
+                it.forEach { it ->
+                    issueList.value!!.add(IssueListTextModel("#${it.number}",it.title,it.body))
                 }
                 issueList.value!!.add(4,IssueImgListModel("https://s3.ap-northeast-2.amazonaws.com/hellobot-kr-test/image/main_logo.png"))
                 adapter.submitList(issueList.value)

@@ -1,7 +1,5 @@
 package com.jjmin.hellobottest.model
 
-interface ModelImpl {
-
+interface ListModel {
     fun getType() : Int
-
 }

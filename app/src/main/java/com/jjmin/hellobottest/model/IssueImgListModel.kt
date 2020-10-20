@@ -1,8 +1,12 @@
 package com.jjmin.hellobottest.model
 
-data class IssueImgListModel(val image : String) : ModelImpl{
+import android.util.Log
+
+data class IssueImgListModel(val image : String) : ListModel{
     override fun getType(): Int {
-        return ItemType.IMG
+        return ItemType.IMG.ordinal
     }
+
+
 
 }

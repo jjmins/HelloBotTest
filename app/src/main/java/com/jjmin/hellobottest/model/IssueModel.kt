@@ -2,7 +2,7 @@ package com.jjmin.hellobottest.model
 
 import com.google.gson.annotations.SerializedName
 
-open class IssueModel(){
+class IssueModel(){
     @SerializedName("title")
     lateinit var title : String
     @SerializedName("number")

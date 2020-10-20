@@ -19,6 +19,5 @@ class DetailActivity : AppCompatActivity() {
 
         issueContentTv.text = body
 
-
     }
 }

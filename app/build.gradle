@@ -59,4 +59,7 @@ dependencies {
 
     //recylcerview
     implementation "com.android.support:recyclerview-v7:$rootProject.recyclerviewVersion"
+
+    //anko
+    implementation "org.jetbrains.anko:anko:$rootProject.ankoVersion"
 }

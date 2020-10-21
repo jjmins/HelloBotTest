@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class User {
     @SerializedName("login")
-    lateinit var login : String
+    var login : String? = null
     @SerializedName("avatar_url")
-    lateinit var profile : String
+    var profile : String? = null
 }

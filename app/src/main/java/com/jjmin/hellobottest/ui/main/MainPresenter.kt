@@ -36,8 +36,8 @@ class MainPresenter(
                             "#${it.number}",
                             it.title,
                             it.body,
-                            it.user.login,
-                            it.user.profile
+                            it.user!!.login,
+                            it.user!!.profile
                         )
                     )
                 }

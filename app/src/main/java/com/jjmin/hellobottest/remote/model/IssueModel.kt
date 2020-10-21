@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 class IssueModel(){
     @SerializedName("title")
-    lateinit var title : String
+    var title : String? = null
     @SerializedName("number")
-    lateinit var number : String
+    var number : String? = null
     @SerializedName("body")
-    lateinit var body : String
+    var body : String? = null
     @SerializedName("user")
-    lateinit var user : User
+    var user : User? = null
 }

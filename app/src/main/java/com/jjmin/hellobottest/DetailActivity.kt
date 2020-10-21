@@ -12,9 +12,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        var issueModel = intent.getParcelableExtra("issueInfo") as IssueTextListModel
+        var issueModel = intent.getParcelableExtra("issueInfo") as IssueTextListModel?
 
-        supportActionBar!!.title = issueModel.number
+        supportActionBar!!.title = issueModel!!.number
 
         issueContentTv.text = issueModel.body
 
